@@ -1,0 +1,16 @@
+{
+  "name": "Shikimori_player",
+  "description": "Better player for shikimori.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["storage", "activeTab", "scripting"],
+  "content_scripts": [ {
+      "js": [ "content.js" ],
+      "matches": [ "https://*.shikimori.one/*" ],
+      "run_at": "document_start"
+   } ],
+  "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "inpage.js", "player.html" ]
+   } ]
+}
