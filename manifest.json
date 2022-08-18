@@ -12,6 +12,6 @@
    } ],
   "web_accessible_resources": [ {
     "matches": [ "\u003Call_urls>" ],
-    "resources": [ "inpage.js", "player.html" ]
+    "resources": [ "inpage.js" ]
   } ]
 }
