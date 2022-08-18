@@ -15,24 +15,24 @@ function onLoad(root, response, position) {
     inner.className = 'player__inner';
     player.appendChild(inner);
 
-    if (Array.isArray(response.result) && response.result.length > 0) {
-        const label = document.createElement('div');
-        label.className = 'title';
-        label.textContent = `${response.result[position].title}`;
-        inner.appendChild(label);
+    // if (Array.isArray(response.result) && response.result.length > 0) {
+    //     const label = document.createElement('div');
+    //     label.className = 'title';
+    //     label.textContent = `${response.result[position].title}`;
+    //     inner.appendChild(label);
 
-        const iframe = document.createElement('iframe');
-        iframe.src = `https:${response.result[position].link}`;
-        iframe.frameBorder = 0;
-        iframe.setAttribute('allowFullScreen', 'true');
-        iframe.setAttribute('webkitallowfullscreen', 'true');
-        iframe.setAttribute('mozallowfullscreen', 'true');
-        inner.appendChild(iframe);
-    } else {
-        const message = document.createElement('label');
-        message.textContent = 'No results';
-        inner.appendChild(message);
-    }
+    //     const iframe = document.createElement('iframe');
+    //     iframe.src = `https:${response.result[position].link}`;
+    //     iframe.frameBorder = 0;
+    //     iframe.setAttribute('allowFullScreen', 'true');
+    //     iframe.setAttribute('webkitallowfullscreen', 'true');
+    //     iframe.setAttribute('mozallowfullscreen', 'true');
+    //     inner.appendChild(iframe);
+    // } else {
+    //     const message = document.createElement('label');
+    //     message.textContent = 'No results';
+    //     inner.appendChild(message);
+    // }
 }
 
 function onInit(root) {

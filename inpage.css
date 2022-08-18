@@ -1,0 +1,20 @@
+.player {
+    position: fixed;
+    z-index: 15;
+    visibility: hidden;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.player_iframe {
+    height: 90%;
+    width: 90%;
+}
+
+.player__inner {
+    height: -webkit-fill-available;
+    background-color: rgba(30, 30, 30, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

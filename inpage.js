@@ -1,15 +1,38 @@
 const API_URL = 'https://anime.bytie.moe'
 
-function onFormLoaded(info_right, response, watchUrl) {
-    // const button = document.createElement('a');
-    // button.className += 'shikimori-ext__button';
-    // button.innerText = 'Watch';
-    // button.href = watchUrl;
-    // button.target = "_blank";
-
-    // player_links = '<div class="block"><div class="subheadline">Студия</div><div class="block"><a href="https://shikimori.one/animes/studio/179-A-C-G-T" title="Аниме студии A.C.G.T."><img alt="Аниме студии A.C.G.T." class="studio-logo" src="https://dere.shikimori.one/system/studios/original/179.jpg?1388083492"></a></div></div>'
-    
+function onFormLoaded(info_right, response, watchUrl, body) {
     if (response.result.length > 0) {
+        // player window
+        const player = document.createElement('div');
+        player.className = 'player';
+        body.prepend(player);
+
+        const inner = document.createElement('div');
+        inner.className = 'player__inner';
+        player.appendChild(inner);
+
+        const iframe = document.createElement('iframe');
+        
+        inner.addEventListener('mousedown', (event) => {
+            iframe.src = `https:${response.result[0]?.link}`;
+            player.style.visibility = "hidden";
+        })
+
+        if (Array.isArray(response.result) && response.result.length > 0) {
+            iframe.className = "player_iframe"
+            iframe.src = `https:${response.result[0].link}`;
+            iframe.frameBorder = 0;
+            iframe.setAttribute('allowFullScreen', 'true');
+            iframe.setAttribute('webkitallowfullscreen', 'true');
+            iframe.setAttribute('mozallowfullscreen', 'true');
+            inner.appendChild(iframe);
+        } else {
+            const message = document.createElement('label');
+            message.textContent = 'No results';
+            inner.appendChild(message);
+        }
+
+        // sources block
         const player_block = document.createElement('div');
         player_block.className = 'block';
 
@@ -31,10 +54,17 @@ function onFormLoaded(info_right, response, watchUrl) {
             title_list.appendChild(element);
             
             const element_link = document.createElement('a');
-            element_link.href = watchUrl + `&position=${i}`;
+            // element_link.href = watchUrl + `&position=${i}`;
+            element_link.name = i.toString();
             element_link.textContent = `${item.translation.title} | ${item.translation.type}`;
             element_link.target = '_blank';
             element_link.rel = 'noopener noreferrer';
+
+            element_link.addEventListener('mousedown', (event) => {
+                iframe.src = `https:${response.result[event.target.name]?.link}`;
+                player.style.visibility = "visible";
+            })
+
             element.appendChild(element_link);
 
         }
@@ -71,6 +101,11 @@ window.addEventListener('turbolinks:load', function () {
             return false;
         }
 
+        const body = document.body;
+        if (body == null) {
+            return false;
+        }
+
         try {
             const data = JSON.parse(form.getAttribute('data-entry'));
             if (data?.id != null) {
@@ -78,9 +113,7 @@ window.addEventListener('turbolinks:load', function () {
 
                 fetch(`${API_URL}/ext/search_by_id?shikimori_id=${data?.id}`)
                     .then((response) => response.json())
-                    .then((response) => {
-                        onFormLoaded(info_right, response, `${watchUrl}?id=${data?.id}`);
-                    })
+                    .then((response) => onFormLoaded(info_right, response, `${watchUrl}?id=${data?.id}`, body))
                     .catch((e) => {
                         showError(`Failed to load title info: ${e}`)
                     })
