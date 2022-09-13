@@ -9,6 +9,7 @@
 .player_iframe {
     height: 90%;
     width: 90%;
+    box-shadow: black 0px 0px 10px;
 }
 
 .player__inner {
