@@ -7,8 +7,8 @@
   "content_scripts": [ {
     "css": [ "inpage.css" ],
     "js": [ "content.js" ],
-    "matches": [ "https://*.shikimori.one/*" ],
-    "run_at": "document_start"
+    "matches": [ "https://*.shikimori.me/*" ],
+    "run_at": "document_end"
    } ],
   "web_accessible_resources": [ {
     "matches": [ "\u003Call_urls>" ],
