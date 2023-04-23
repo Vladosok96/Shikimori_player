@@ -8,8 +8,11 @@
     "css": [ "inpage.css" ],
     "js": [ "content.js" ],
     "matches": [ "https://*.shikimori.me/*" ],
-    "run_at": "document_end"
+    "run_at": "document_start"
    } ],
+  "icons": {
+    "128": "/128.png"
+  },
   "web_accessible_resources": [ {
     "matches": [ "\u003Call_urls>" ],
     "resources": [ "inpage.js" ]
