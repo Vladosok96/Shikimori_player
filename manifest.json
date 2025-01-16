@@ -7,7 +7,7 @@
   "content_scripts": [ {
     "css": [ "inpage.css" ],
     "js": [ "content.js" ],
-    "matches": [ "https://*.shikimori.me/*" ],
+    "matches": [ "https://*.shikimori.one/*" ],
     "run_at": "document_start"
    } ],
   "icons": {
