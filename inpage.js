@@ -66,7 +66,7 @@ function onFormLoaded(title_list, response, body) {
         
         const element_line_info = document.createElement('div');
         element_line_info.className = "line";
-        element_line_info.textContent = 'Плееры не найдены:';
+        element_line_info.textContent = 'Плееры не найдены, попробуйте включить vpn:';
         element_line_container_info.appendChild(element_line_info);
 
         const element_line_update = document.createElement('div');
@@ -113,8 +113,6 @@ function requestPlayers(title_list) {
     }
 }
 
-let initialized = null;
-
 function loadPlayers() {
     const form = document.querySelector('.b-db_entry > .c-image > .b-user_rate');
     if (form == null) {
@@ -146,4 +144,4 @@ function loadPlayers() {
     requestPlayers(title_list);
 }
 
-setTimeout(loadPlayers, 5000);
+setTimeout(loadPlayers, 1500);
